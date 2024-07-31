@@ -1,25 +1,51 @@
-from en import menuEn, clearEn, contEn
-from es import menuEs
+import tkinter, tkinter.ttk as ttk
+from en import guiMenuEn
+from es import guiMenuEs
 
-#MAIN MENU
-def mainmenu():
-    op = 0
-    while (op < 1) or (op > 3):
-        clearEn()
-        print("-----MLT STORIDEAS-----")
-        print("1) English")
-        print("2) Español")
-        print("3) Exit")
-        try:
-            op = int(input("Select a language/option (1-3): "))
-        except ValueError:
-            None
-        else:
-            if(op == 1):
-                menuEn()
-            if(op == 2):
-                menuEs()
-            if(op == 3):
-                print("Saliendo del programa...")
+#GO TO LANGUAGE MENU
+def gotolang(op,root):
+    if(op == 1):
+        guiMenuEn(root)
+    if(op == 2):
+        guiMenuEs(root)
+    
+    
 
-mainmenu()
+#MAIN GUI MENU
+def mainGuiMenu():
+    #Create the main window
+    window = tkinter.Tk()
+    window.resizable(False, False)
+    window.title("MLT Storideas")
+
+    #Main Frame
+    mainframe = ttk.Frame(window)
+    mainframe.grid(padx=10, pady=10)
+
+    #Title
+    title = ttk.Label(mainframe, text="MLT STORIDEAS", font=("Arial", 16, "bold"))
+    title.pack()
+
+    #Message
+    message = ttk.Label(mainframe, text="Select a language")
+    message.pack()
+
+    #Language Options
+    op = tkinter.IntVar()
+
+    #English
+    eng = ttk.Radiobutton(mainframe, text="English", variable=op, value=1)
+    eng.pack()
+
+    #Spanish
+    esp = ttk.Radiobutton(mainframe, text="Español", variable=op, value=2)
+    esp.pack()
+
+    #Button
+    button = ttk.Button(mainframe, text="Select", command=lambda: gotolang(op.get(),window))
+    button.pack()
+    
+    #Infinte loop
+    window.mainloop()
+
+mainGuiMenu()

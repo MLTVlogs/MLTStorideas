@@ -1,5 +1,5 @@
-/dist
-/build
 /__pycache__
 storideas.spec
+storideas.pyw
 story.txt
+trials.py
