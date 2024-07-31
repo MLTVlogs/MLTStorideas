@@ -19,6 +19,6 @@ This code merges the English and Spanish versions of the program, in other words
 Este código fusiona las versiones del programa en ingles y español, o sea, este es el programa principal.
 
 ## STORIDEAS.exe
-This is the program that is ready to be used
+This is the program that is ready to be used.
 
-Este es el programa listo para ser usado
+Este es el programa listo para ser usado.
