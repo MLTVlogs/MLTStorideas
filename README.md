@@ -17,8 +17,3 @@ Aquí se encuentra el funcionamiento del programa en español.
 This code merges the English and Spanish versions of the program, in other words, this is the main program.
 
 Este código fusiona las versiones del programa en ingles y español, o sea, este es el programa principal.
-
-## STORIDEAS.exe
-This is the program that is ready to be used.
-
-Este es el programa listo para ser usado.
