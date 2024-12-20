@@ -404,29 +404,29 @@ def seven_actGui(mainmenu):
 
 #######################################
 #N-Act Story Create English
-def n_actCreate(parent, num, labels, texts, scrvs):
+def create_n_actWidgets(parent, num, labels, texts, scrvs):
     #Destroy the previous widgets
-    for i in range(len(labels)):
-        labels[i].destroy()
-    for i in range(len(texts)):
-        texts[i].destroy()
-    for i in range(len(scrvs)):
-        scrvs[i].destroy()
-
-    #Clear the lists
-    labels.clear()
-    texts.clear()
-    scrvs.clear()
+    quantity = len(labels)
+    if(num < quantity):
+        for i in range(num,quantity):
+            labels[i].destroy()
+            texts[i].destroy()
+            scrvs[i].destroy()
+        for i in range(quantity-num):
+            labels.pop()
+            texts.pop()
+            scrvs.pop()
     
     #Create the new widgets
-    for i in range(num):
-        labels.append(ttk.Label(parent,text=f"ACT {i+1}", font=("Arial",10)))
-        labels[i].grid(row=(i//2)*2,column=(i%2)*2,padx=0,pady=0)
-        texts.append(tkinter.Text(parent,width=80,height=3,font=("Arial",10)))
-        texts[i].grid(row=((i//2)*2)+1,column=(i%2)*2,padx=0,pady=0,sticky="w")
-        scrvs.append(ttk.Scrollbar(parent,command=texts[i].yview))
-        scrvs[i].grid(row=((i//2)*2)+1,column=((i%2)*2)+1,sticky="nsew")
-        texts[i].config(yscrollcommand=scrvs[i].set)
+    if(len(labels)<num):
+        for i in range(len(labels),num):
+            labels.append(ttk.Label(parent,text=f"ACT {i+1}", font=("Arial",10)))
+            labels[i].grid(row=(i//2)*2,column=(i%2)*2,padx=0,pady=0)
+            texts.append(tkinter.Text(parent,width=80,height=3,font=("Arial",10)))
+            texts[i].grid(row=((i//2)*2)+1,column=(i%2)*2,padx=0,pady=0,sticky="w")
+            scrvs.append(ttk.Scrollbar(parent,command=texts[i].yview))
+            scrvs[i].grid(row=((i//2)*2)+1,column=((i%2)*2)+1,sticky="nsew")
+            texts[i].config(yscrollcommand=scrvs[i].set)
 
 #N-Act Story Save English
 def n_actSave(acts, size, window):
@@ -491,10 +491,10 @@ def n_actGui(mainmenu):
     message = ttk.Label(frame1,text="Adjust the acts number and write them down")
     message.grid(row=1,column=0,padx=3,pady=3)
 
-    n_actCreate(frame2, 1, labels, texts, scrvs)
+    create_n_actWidgets(frame2, 1, labels, texts, scrvs)
 
     #Number of Acts Spinbox
-    numacts = ttk.Spinbox(frame1,from_=1,to=16,width=20,command=lambda:n_actCreate(frame2,int(numacts.get()),labels,texts,scrvs))
+    numacts = ttk.Spinbox(frame1,from_=1,to=16,width=20,command=lambda:create_n_actWidgets(frame2,int(numacts.get()),labels,texts,scrvs))
     numacts.set(1)
     numacts.grid(row=2,column=0,padx=3,pady=3)
 
